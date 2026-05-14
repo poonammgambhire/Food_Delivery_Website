@@ -1,4 +1,3 @@
-// server/index.js
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -9,28 +8,28 @@ import userRouter from "./routes/userRoute.js";
 import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js";
 
-
-
 dotenv.config();
+
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // ✅ Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
-app.use("/api/user",userRouter)
 
-app.use("/api/cart",cartRouter)
-
+// ✅ Routes
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/food", foodRoute);
 
 // ✅ Test Root Route
 app.get("/", (req, res) => {
   res.send("🍕 Food Delivery API is running successfully!");
 });
-
-// ✅ Routes
-app.use("/api/food", foodRoute);
 
 // ✅ Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
