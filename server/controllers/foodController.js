@@ -1,22 +1,17 @@
-// server/controllers/foodController.js
-
 import foodModel from '../models/foodModel.js';
 import mongoose from 'mongoose';
-import fs from 'fs';
 
 // 1️⃣ Add Food
 export const addFood = async (req, res) => {
   try {
-    const image_filename = req.file ? req.file.filename : null;
-
+    const image_url = req.file ? req.file.path : null;
     const food = new foodModel({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      image: image_filename
+      image: image_url
     });
-
     await food.save();
     res.json({ success: true, message: 'Food Added Successfully' });
   } catch (error) {
@@ -40,25 +35,13 @@ export const listFood = async (req, res) => {
 export const removeFood = async (req, res) => {
   try {
     const { id } = req.params;
-
-    // ✅ Validate ObjectId before deleting
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ success: false, message: 'Invalid food ID' });
     }
-
     const food = await foodModel.findByIdAndDelete(id);
-
     if (!food) {
       return res.status(404).json({ success: false, message: 'Food not found' });
     }
-
-    // Optional: delete the image file
-    if (food.image) {
-      fs.unlink(`uploads/${food.image}`, (err) => {
-        if (err) console.error('Failed to delete image:', err);
-      });
-    }
-
     res.json({ success: true, message: 'Food Deleted Successfully' });
   } catch (error) {
     console.error(error);
