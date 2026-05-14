@@ -20,40 +20,23 @@ const Navbar = ({ setShowLogin }) => {
       <Link to="/" className="navbar-logo">
         <img src={assets.logo} alt="Logo" />
       </Link>
-
       <ul className="navbar-menu">
         <li>
-          <Link to="/" onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""}>
-            Home
-          </Link>
+          <Link to="/" onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""}>Home</Link>
         </li>
         <li>
-          <a href="#explore-menu" onClick={() => setMenu("Menu")} className={menu === "Menu" ? "active" : ""}>
-            Menu
-          </a>
+          <a href="#explore-menu" onClick={() => setMenu("Menu")} className={menu === "Menu" ? "active" : ""}>Menu</a>
         </li>
         <li>
-          <a href="#app-download" onClick={() => setMenu("Mobile-app")} className={menu === "Mobile-app" ? "active" : ""}>
-            Mobile App
-          </a>
+          <a href="#app-download" onClick={() => setMenu("Mobile-app")} className={menu === "Mobile-app" ? "active" : ""}>Mobile App</a>
         </li>
         <li>
-          <a href="#footer" onClick={() => setMenu("Contact-us")} className={menu === "Contact-us" ? "active" : ""}>
-            Contact Us
-          </a>
+          <a href="#footer" onClick={() => setMenu("Contact-us")} className={menu === "Contact-us" ? "active" : ""}>Contact Us</a>
         </li>
         <li>
-          
-            href="https://food-delivery-website-rlohhl5o8-poonam-gambhire-s-projects.vercel.app"
-            target="_blank"
-            onClick={() => setMenu("Admin")}
-            className={menu === "Admin" ? "active" : ""}
-          >
-            Admin Panel
-          </a>
+          <a href="https://food-delivery-website-rlohhl5o8-poonam-gambhire-s-projects.vercel.app" target="_blank" onClick={() => setMenu("Admin")} className={menu === "Admin" ? "active" : ""}>Admin Panel</a>
         </li>
       </ul>
-
       <div className="navbar-right">
         <img src={assets.search_icon} alt="Search" className="icon" />
         <div className="navbar-search-icon">
@@ -65,9 +48,7 @@ const Navbar = ({ setShowLogin }) => {
           )}
         </div>
         {!token ? (
-          <button onClick={() => setShowLogin(true)} className="signin-btn">
-            Sign In
-          </button>
+          <button onClick={() => setShowLogin(true)} className="signin-btn">Sign In</button>
         ) : (
           <div className="navbar-profile">
             <img src={assets.profile_icon} alt="Profile" />
