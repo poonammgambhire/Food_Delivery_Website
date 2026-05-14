@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [food_list, setFoodList] = useState([]);
 
-  const url = "http://localhost:4000";
+  const url = "https://food-delivery-website-jyhc.onrender.com";
 
   // ✅ Add item to cart
   const addToCart = (itemId) => {
